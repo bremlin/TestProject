@@ -19,6 +19,6 @@ public class FindEldersController {
 	@GetMapping("/findElders")
 	public Set findElders() {
 
-		return finder.getFinderOldMan().findOldMembers(dataClass.getRandomData());
+		return finder.getFinderOldMan().findOldMembers(dataClass.getStaticData());
 	}
 }

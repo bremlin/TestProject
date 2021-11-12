@@ -8,12 +8,12 @@ import java.util.*;
 @Component("dataClass")
 public class DataClass {
 
-    private int MIN_GROUP = 1;
-    private int MAX_GROUP = 3;
-    private int MIN_USER = 10;
-    private int MAX_USER = 30;
+    private final int MIN_GROUP = 1;
+    private final int MAX_GROUP = 3;
+    private final int MIN_USER = 10;
+    private final int MAX_USER = 30;
 
-    private int MAX_AGE = 80;
+    private final int MAX_AGE = 80;
 
     public ArrayList<MembersGroup> getRandomData() {
         ArrayList<MembersGroup> membersGroups = generateMemberGroup(generateMembers());
@@ -63,7 +63,9 @@ public class DataClass {
 
         for (int i = 0; i <= groupsCount; i++) {
             MembersGroup membersGroup = new MembersGroup(getRandomName(), memberMap.get(i));
-            memberGroupsList.add(membersGroup);
+            if (membersGroup.getMembers() != null) {
+                memberGroupsList.add(membersGroup);
+            }
         }
         return memberGroupsList;
     }
@@ -81,33 +83,24 @@ public class DataClass {
     }
 
     public ArrayList<MembersGroup> getStaticData() {
-        Member member1 = new Member("a", 10);
-        Member member2 = new Member("b", 100);
-        Member member3 = new Member("c", 1490);
-        Member member4 = new Member("d", 49);
-        Member member5 = new Member("e", 32);
-        Member member6 = new Member("f", 51);
-        Member member7 = new Member("klj", 56);
-        Member member8 = new Member("ch5", 5);
-        ArrayList<Member> temp = new ArrayList();
-        temp.add(member1);
-        temp.add(member2);
-        temp.add(member3);
-        temp.add(member7);
+        ArrayList<Member> memberArrayList1 = new ArrayList<>(Arrays.asList(
+                new Member("Maria", 10),
+                new Member("Ivan", 100),
+                new Member("Oleg", 69),
+                new Member("Katya", 27),
+                new Member("Boris", 55)
+        ));
 
-        ArrayList<Member> temp2 = new ArrayList();
-        temp2.add(member4);
-        temp2.add(member5);
-        temp2.add(member6);
-        temp2.add(member8);
+        ArrayList<Member> memberArrayList2 = new ArrayList<>(Arrays.asList(
+                new Member("Nikolay", 49),
+                new Member("Sergey", 66),
+                new Member("Elvira", 3),
+                new Member("Nastya", 15),
+                new Member("Kefir", 88)
+        ));
 
-        MembersGroup membersGroup1 = new MembersGroup("A", temp);
-        MembersGroup membersGroup2 = new MembersGroup("B", temp2);
-
-        ArrayList<MembersGroup> membersGroups = new ArrayList<>();
-        membersGroups.add(membersGroup1);
-        membersGroups.add(membersGroup2);
-
-        return membersGroups;
+        return new ArrayList<>(Arrays.asList(
+                new MembersGroup("A", memberArrayList1),
+                new MembersGroup("B", memberArrayList2)));
     }
 }
